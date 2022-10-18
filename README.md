@@ -7,4 +7,4 @@ Learn everything about backend web development: Golang, Postgres, Gin, gRPC, Doc
 
 ## Database Schema
 Designed from db.io  site
-![Alt text](![Alt text](images/small_bank.png?raw=true "Database Schema")
+![Alt text](images/small_bank.png?raw=true "Database Schema")
