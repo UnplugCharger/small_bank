@@ -7,7 +7,6 @@ package db
 
 import (
 	"context"
-	"database/sql"
 	"time"
 )
 
@@ -37,7 +36,7 @@ const getEntry = `-- name: GetEntry :one
 SELECT id, account_id, amount, created_at FROM entries WHERE id = $1 LIMIT 1
 `
 
-func (q *Queries) GetEntry(ctx context.Context, id sql.NullInt64) (Entry, error) {
+func (q *Queries) GetEntry(ctx context.Context, id int64) (Entry, error) {
 	row := q.db.QueryRowContext(ctx, getEntry, id)
 	var i Entry
 	err := row.Scan(
