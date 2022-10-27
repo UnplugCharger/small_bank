@@ -18,6 +18,8 @@ test:
 format:
 	go fmt ./...
 
+peepdb:
+	docker exec -it small_bank psql -U root -d small_bank
 
 
 
