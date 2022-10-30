@@ -21,6 +21,9 @@ format:
 peepdb:
 	docker exec -it small_bank psql -U root -d small_bank
 
+server:
+	go run main.go
+
 
 
 
