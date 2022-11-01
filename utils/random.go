@@ -23,8 +23,8 @@ func RandomOwner() string {
 	return RandomString(6)
 }
 
-func RandomInt(min, max int) int {
-	return min + rand.Intn(max-min)
+func RandomInt(min, max int64) int64 {
+	return min + rand.Int63n(max-min)
 }
 func RandomMoney() int64 {
 	return int64(RandomInt(1, 100000))
