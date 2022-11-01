@@ -2,6 +2,8 @@ package db
 
 import (
 	"database/sql"
+	"github.com/UnplugCharger/small_bank/utils"
+	"log"
 	"os"
 	"testing"
 
@@ -11,16 +13,15 @@ import (
 var testQueries *Queries
 var testDB *sql.DB
 
-const (
-	dbDriver = "postgres"
-	dbSource = "postgresql://root:password@localhost:5432/small_bank?sslmode=disable"
-)
-
 func TestMain(m *testing.M) {
-	var err error
-	testDB, err = sql.Open(dbDriver, dbSource)
+	config, err := utils.LoadConfig("../..")
 	if err != nil {
-		panic(err)
+		log.Fatal("Unable to load config file", err)
+	}
+
+	testDB, err = sql.Open(config.DBDriver, config.DBSource)
+	if err != nil {
+		log.Fatal("Unable to connect to the database", err)
 	}
 	testQueries = New(testDB)
 
