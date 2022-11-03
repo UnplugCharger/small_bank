@@ -5,16 +5,17 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"net/http"
+	"net/http/httptest"
+	"testing"
+
 	mockdb "github.com/UnplugCharger/small_bank/db/mock"
 	db "github.com/UnplugCharger/small_bank/db/sqlc"
 	"github.com/UnplugCharger/small_bank/utils"
 	"github.com/gin-gonic/gin"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/require"
-	"io/ioutil"
-	"net/http"
-	"net/http/httptest"
-	"testing"
 )
 
 func randomAccount(owner string) db.Account {
@@ -148,6 +149,7 @@ func TestCreateAccountAPI(t *testing.T) {
 		{
 			name: "Ok",
 			body: gin.H{
+				"owner":	account.Owner,
 				"currency": account.Currency,
 			},
 			buildStubs: func(store *mockdb.MockStore) {
